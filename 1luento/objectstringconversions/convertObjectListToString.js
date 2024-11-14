@@ -39,3 +39,14 @@ console.log(`Tämä on tulivuori ${volcanosAsString} merkkijonomuodossa`)
 console.log(`Jotta voit tallettaa datan tekstinä tai siirtää verkossa sen pitää olla merkkijonomuodossa`)
 console.log(`Volcano list tyyppi ${typeof volcanoList}`)
 console.log(`Volcanos as string tyyppi ${typeof volcanosAsString}`)
+
+
+function convertJSONObjectToCSVRow(volcanoObject){
+    return "\""+volcanoObject.name+"\";"+volcanoObject.heightMeters+";"+volcanoObject.location.country
+}
+
+const volcanoCSVRowList = volcanoList.map(volcano => convertJSONObjectToCSVRow(volcano))
+console.log(volcanoCSVRowList)
+const volcanoCSVText = volcanoCSVRowList.join("\n")
+
+console.log(volcanoCSVText)

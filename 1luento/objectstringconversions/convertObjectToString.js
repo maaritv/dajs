@@ -16,6 +16,8 @@ const volcanoObject = {
 
 const volcanoAsString = JSON.stringify(volcanoObject)
 
+console.log(`Tulivuoren nimi on ${volcanoObject.name} ja latitude on ${volcanoObject.location.coordinates.latitude}`)
+
 console.log(`Tämä on tulivuori ${volcanoObject} objektimuodossa, huomaa ero.`)
 console.log(`Tämä on tulivuori ${volcanoAsString} merkkijonomuodossa`)
 console.log(`Jotta voit tallettaa datan tekstinä tai siirtää verkossa sen pitää olla merkkijonomuodossa`)
