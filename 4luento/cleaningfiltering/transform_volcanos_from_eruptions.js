@@ -10,6 +10,7 @@ const volcanoEruptions = myObjectParser.parseCSVtoJSONSync("./data/volcano-event
 console.log(`Purkauksia ${volcanoEruptions.length}`)
 
 const volcanos = volcanoEruptions.map(eruption=> transformEruptionToVolcano(eruption))
+
 //Järjestää listan nimen mukaan
 volcanos.sort((a, b) => a.name.localeCompare(b.name));
 const uniqueVolcanos = duplicateRemover.removeDuplicates(volcanos)
@@ -22,9 +23,11 @@ function transformEruptionToVolcano(eruption){
     let { name, location, country, latitude, longitude, elevation, type } = eruption;
     let volcano = { name, location, country, latitude, longitude, type }
     volcano.elevationCategory=categorizeElevation(elevation)
-    volcano.latitude=parseFloat(volcano.latitude)
-    volcano.longitude=parseFloat(volcano.longitude)
-    //console.log(typeof(volcano.elevation))
+    const coordinates =  {}
+    coordinates.latitude=parseFloat(volcano.latitude)
+    coordinates.longitude=parseFloat(volcano.longitude)
+    volcano.coordinates = coordinates
+    //console.log(volcano.coordinates.latitude)
     return volcano;
 }
 
