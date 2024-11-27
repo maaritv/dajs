@@ -6,20 +6,23 @@ console.log(`Number of customers ${customers.length}`)
 //kaikki attribuutit ovat samat kuin jollain toisella
 //listan objektilla. 
 
-function removeDuplicateCustomers(customers) {
-    const customerset = new Set()
-    customers.forEach(customer => {
-        customerset.add(JSON.stringify(customer))
+function removeDuplicates(objects) {
+    const objectset = new Set()
+    objects.forEach(obj => {
+        objectset.add(JSON.stringify(obj))
     });
-    const uniqueCustomers = []
-    customerset.forEach(customerstr => {
-        uniqueCustomers.push(JSON.parse(customerstr))
+    const uniqueObjects = []
+    objectset.forEach(objectstr => {
+        uniqueObjects.push(JSON.parse(objectstr))
     })
-    return uniqueCustomers
+    return uniqueObjects
 }
 
+
 // Usage
-const uniqueCustomers = removeDuplicateCustomers(customers);
+const uniqueCustomers = removeDuplicates(customers);
 
 console.log(uniqueCustomers)
 console.log(`Number of unique customers ${uniqueCustomers.length}`)
+
+module.exports = {removeDuplicates}
