@@ -21,11 +21,11 @@ filewriter.saveTextToFile(JSON.stringify(uniqueVolcanos), 'volcanos.json')
 
 function transformEruptionToVolcano(eruption){
     let { name, location, country, latitude, longitude, elevation, type } = eruption;
-    let volcano = { name, location, country, latitude, longitude, type }
+    let volcano = { name, location, country, type }
     volcano.elevationCategory=categorizeElevation(elevation)
     const coordinates =  {}
-    coordinates.latitude=parseFloat(volcano.latitude)
-    coordinates.longitude=parseFloat(volcano.longitude)
+    coordinates.latitude=parseFloat(latitude)
+    coordinates.longitude=parseFloat(longitude)
     volcano.coordinates = coordinates
     //console.log(volcano.coordinates.latitude)
     return volcano;
