@@ -20,7 +20,7 @@ function validateVolcano(volcano){
         return false
 }
 
-// Esimerkkikutsu
+// Koodin suoritus alkaa tästä
 const volcanoList = [
     { name: "Mount Fuji", height: 3776, latest_eruption_year: 1707, country: "Japan" },
     { name: "Eyjafjallajökull", height: 1651, latest_eruption_year: 2010, country: "Iceland" },

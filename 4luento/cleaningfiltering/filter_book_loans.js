@@ -6,7 +6,7 @@ const validBookLoans = myDateParser.cleanBookLoans(myBookLoans)
 
 console.log(`Kirjalainoja tutkittavaksi ${validBookLoans.length}`)
 
-const bookloans = validBookLoans.filter(bookloan=> bookloan.bookid=10 && myDateParser.parseDate(bookloan.loandate)>myDateParser.parseDate('2024-03-01') && myDateParser.parseDate(bookloan.loandate)<myDateParser.parseDate('2024-03-30'))
+const bookloans = validBookLoans.filter(bookloan=> bookloan.bookid==26 && myDateParser.parseDate(bookloan.loandate)>myDateParser.parseDate('2024-03-01') && myDateParser.parseDate(bookloan.loandate)<myDateParser.parseDate('2024-03-30'))
 console.log(bookloans)
 console.log(`Kiinnostavia kirjalainoja ${bookloans.length}`)
 

@@ -29,7 +29,7 @@ function parseCSVtoJSONSync(filePath, delimiter = ';') {
     }
 }
 
-// Example usage
+// Koodin suoritus alkaa tästä
 const csvFilePath = './bookloans.csv';
 try {
     const parsedData = parseCSVtoJSONSync(csvFilePath);
