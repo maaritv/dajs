@@ -29,7 +29,7 @@ function  joinVolcanosAndEruptions(volcanos, eruptions){
         volcanos.map(volcano => [volcano.volcano_name, volcano])
     );
 
-    const volcanosAndEruptions = eruptions.map(eruption=> innerJoinVolcanosAndEruptions(eruption, volcanoMap))
+    const volcanosAndEruptions = eruptions.map(eruption=> innerJoinVolcanoAndEruption(eruption, volcanoMap))
     return volcanosAndEruptions
 }
 
@@ -40,7 +40,7 @@ function  joinVolcanosAndEruptions(volcanos, eruptions){
  * @returns 
  */
 
-function innerJoinVolcanosAndEruptions(eruption, volcanoMap){
+function innerJoinVolcanoAndEruption(eruption, volcanoMap){
     const volcanoForEruption = volcanoMap.get(eruption.volcano_name)
     return {...volcanoForEruption, ...eruption}
 }
