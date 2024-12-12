@@ -74,7 +74,7 @@ function mapRelatedVolcanoEruption(earthquake, volcanoEruptions) {
         //console.log("Palautetaan eka")
         const volcanoEruptionEq = { ...relatedVolcanoEruptions[0], ...earthquake }
         volcanoEruptionEq.eq_distanceKm = haversine(volcanoEruptionEq.eruption_latitude, volcanoEruptionEq.eruption_longitude, volcanoEruptionEq.eq_latitude, volcanoEruptionEq.eq_longitude)
-        volcanoEruptionEq.daysBetweenEqAndEruption=dateUtils.calculateTimeDiff(earthquake.timestamp, relatedVolcanoEruptions[0].eruption_date)
+        volcanoEruptionEq.daysBetweenEqAndEruption=dateUtils.calculateTimeDiffInDays(earthquake.timestamp, relatedVolcanoEruptions[0].eruption_date)
 
         //console.log(volcanoEruptionEq)
         return volcanoEruptionEq

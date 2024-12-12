@@ -62,7 +62,7 @@ function createCSVFromJSON(jsObjectList) {
 }
 
 
-function saveTextToFileDump(text, fileName){
+function saveTextToFile(text, fileName){
     fs.writeFile('./'+fileName, text, err => {
         if (err) {
           console.error(err);
@@ -70,20 +70,6 @@ function saveTextToFileDump(text, fileName){
             console.log("ok!")
         }
       });
-}
-
-function saveTextToFile(text, fileName) {
-    const stream = fs.createWriteStream('./' + fileName);
-    stream.write(text); // Kirjoitetaan data virtaan
-    stream.end(); // Suljetaan virta
-
-    stream.on('finish', () => {
-        console.log("ok!");
-    });
-
-    stream.on('error', (err) => {
-        console.error("Error writing to file:", err);
-    });
 }
 
 function removeDuplicates(objects) {

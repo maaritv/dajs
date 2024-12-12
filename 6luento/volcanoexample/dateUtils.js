@@ -31,7 +31,7 @@ function createDate(year, month, day) {
     return dte;
 }
 
-function calculateTimeDiff(firstDateTimeStr, laterDateStr){
+function calculateTimeDiffInDays(firstDateTimeStr, laterDateStr){
     if (!firstDateTimeStr) {
         return false
     }
@@ -48,7 +48,7 @@ function calculateTimeDiff(firstDateTimeStr, laterDateStr){
 //earthquake happens first. it has timestamp
 //eruption after that. it has datestr
 function precedes(firstDateTimeStr, laterDateStr, maxTimeDifference) {
-  const timeDifference = calculateTimeDiff(firstDateTimeStr, laterDateStr)
+  const timeDifference = calculateTimeDiffInDays(firstDateTimeStr, laterDateStr)
   if (timeDifference<0){
     return false
   }
@@ -61,4 +61,4 @@ function precedes(firstDateTimeStr, laterDateStr, maxTimeDifference) {
 }
 
 
-module.exports = { parseDate, createDate, precedes, calculateTimeDiff }
+module.exports = { parseDate, createDate, precedes, calculateTimeDiffInDays }
