@@ -1,13 +1,12 @@
 
 /**
- * 
+ *  Päivämäärärakentaja käyttää omaa aikavyöhykettäsi oletuksena
+    siksi lisätään Z eli tieto että on käytettävä UTC-aikaa
  * @param {dateString in YYYY-MM-DD format} dateString 
  * @returns date object
  */
 function parseDateWithTime(dateTimeString) {
     //const dateString = "2022-09-01 04:57:05.290";
-    //Päivämäärärakentaja käyttää omaa aikavyöhykettäsi oletuksena
-    //siksi lisätään Z eli tieto että on käytettävä UTC-aikaa
     //console.log("Date to be parsed: "+dateString)
     const parsedDate = new Date(dateTimeString.replace(" ", "T") + "Z");
     //console.log(parsedDate);

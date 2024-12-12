@@ -4,10 +4,10 @@ Public Doman
 earthquakes_pd.csv 
 earthquakesa_pd.csv
 
-Apache 2
-===============================
-eruptions.csv
-volcanos.json
+https://creativecommons.org/publicdomain/zero/1.0/
+https://www.kaggle.com/datasets/smithsonian/volcanic-eruptions
+  - eruptions.csv
+  - volcanos.json
 
 earthquakesall.csv
 ================================

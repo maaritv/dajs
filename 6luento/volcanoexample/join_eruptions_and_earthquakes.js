@@ -25,7 +25,7 @@ earthquakes.push(...earthquakesPdA)
 const earthquakesWithNumericCoordinates = transformEarthquakes(earthquakes)
 console.log(earthquakesWithNumericCoordinates)
 
-const volcanoEruptionEarthQuakes = joinEarthquakeAndVolcanoEruption(volcanoEruptionsWithNumericCoordinates, earthquakesWithNumericCoordinates)
+const volcanoEruptionEarthQuakes = joinEarthquakeAndVolcanoEruptions(volcanoEruptionsWithNumericCoordinates, earthquakesWithNumericCoordinates)
 //console.log(volcanoEruptionEarthQuakes)
 
 const cleanedList = volcanoEruptionEarthQuakes.filter(volcanoEruptionEarthQuake=> volcanoEruptionEarthQuake.eq_distanceKm>0)
@@ -43,7 +43,7 @@ objectParser.saveTextToFile(JSON.stringify(uniqueList), "outputdata/volcanoErupt
  * @param {} volcanosAndEruptions 
  * @param {*} earthquakes 
  */
-function joinEarthquakeAndVolcanoEruption(volcanoEruptions, earthquakes) {
+function joinEarthquakeAndVolcanoEruptions(volcanoEruptions, earthquakes) {
     const volcanoEruptionEarthquakes = earthquakes.map(earthquake => mapRelatedVolcanoEruption(earthquake, volcanoEruptions))
     console.log("Tulivuori-purkaus-maanjäristykset")
     console.log(volcanoEruptionEarthquakes)
@@ -71,12 +71,12 @@ function mapRelatedVolcanoEruption(earthquake, volcanoEruptions) {
     const relatedVolcanoEruptions = volcanoEruptions.filter(volcanoEruption => isEarthquakeRelated(volcanoEruption))
 
     if (relatedVolcanoEruptions.length > 0) {
-        console.log("Palautetaan eka")
+        //console.log("Palautetaan eka")
         const volcanoEruptionEq = { ...relatedVolcanoEruptions[0], ...earthquake }
         volcanoEruptionEq.eq_distanceKm = haversine(volcanoEruptionEq.eruption_latitude, volcanoEruptionEq.eruption_longitude, volcanoEruptionEq.eq_latitude, volcanoEruptionEq.eq_longitude)
         volcanoEruptionEq.daysBetweenEqAndEruption=dateUtils.calculateTimeDiff(earthquake.timestamp, relatedVolcanoEruptions[0].eruption_date)
 
-        console.log(volcanoEruptionEq)
+        //console.log(volcanoEruptionEq)
         return volcanoEruptionEq
     }
     else {

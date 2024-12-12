@@ -15,6 +15,7 @@ console.log(volcanosAndEruptions)
 objectParser.saveTextToFile(JSON.stringify(volcanosAndEruptions), './inputdata/volcanos_and_eruptions.json')
 
 
+
 /**
  * Tehdään ohjelmallisesti ulkoliitos, jossa yhdistetään kaikki tulivuoret, kaikkiin kys.
  * tulivuoren purkauksiin. Käytetään ulkoliitosta, koska myöhemmin pitää voida tulivuoriin 
@@ -63,7 +64,7 @@ function transformEruptionDateFieldsToStandardDateAndAddDuration(eruptions){
 
     function transformDateInformation(eruption){
         const {volcano_name,eruption_number,eruption_category,area_of_activity,vei,evidence_method_dating,start_year,start_month,start_day,end_year,end_month,end_day,latitude,longitude}=eruption;
-        const neweruption = {volcano_name,eruption_number,eruption_category,area_of_activity,vei,evidence_method_dating,latitude,longitude}
+        const neweruption = {volcano_name, eruption_number,eruption_category,area_of_activity,vei,evidence_method_dating,latitude,longitude}
         neweruption.eruption_date = start_year+"-"+start_month+"-"+start_day
         if (parseInt(end_month)>0 && parseInt(end_day)>0){
             const endDateStr = end_year+"-"+end_month+"-"+end_day
