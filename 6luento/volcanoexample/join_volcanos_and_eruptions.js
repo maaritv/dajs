@@ -17,10 +17,8 @@ objectParser.saveTextToFile(JSON.stringify(volcanosAndEruptions), './inputdata/v
 
 
 /**
- * Tehdään ohjelmallisesti ulkoliitos, jossa yhdistetään kaikki tulivuoret, kaikkiin kys.
- * tulivuoren purkauksiin. Käytetään ulkoliitosta, koska myöhemmin pitää voida tulivuoriin 
- * yhdistää myös järistyksiä vaikka tulivuori ei (vielä) olisi purkautunut!
- * Ulkoliitoksella tulostaulukkoon tulee myös ne tulivuoret, jotka eivät ole koskaan purkautuneet.
+ * Tehdään ohjelmallisesti liitos, jossa yhdistetään kaikki 
+ * tulivuorenpurkaukset oikeisiin tulivuoriin käyttäen tulivuoren nimeä. 
  */
 
 function  joinVolcanosAndEruptions(volcanos, eruptions){
@@ -30,7 +28,7 @@ function  joinVolcanosAndEruptions(volcanos, eruptions){
         volcanos.map(volcano => [volcano.volcano_name, volcano])
     );
 
-    const volcanosAndEruptions = eruptions.map(eruption=> outerJoinVolcanoAndEruption(eruption, volcanoMap))
+    const volcanosAndEruptions = eruptions.map(eruption=> joinVolcanoAndEruption(eruption, volcanoMap))
     return volcanosAndEruptions
 }
 
@@ -41,7 +39,7 @@ function  joinVolcanosAndEruptions(volcanos, eruptions){
  * @returns 
  */
 
-function outerJoinVolcanoAndEruption(eruption, volcanoMap){
+function joinVolcanoAndEruption(eruption, volcanoMap){
     const volcanoForEruption = volcanoMap.get(eruption.volcano_name)
     return {...volcanoForEruption, ...eruption}
 }
@@ -50,7 +48,7 @@ function outerJoinVolcanoAndEruption(eruption, volcanoMap){
 function removeEruptionsBeforeYear(eruptions, before_year){
 
     function hasOccuredBefore(eruption){
-        if (parseInt(eruption.start_year)==NaN || parseInt(eruption.start_year)<before_year || parseInt(eruption.start_month)==0 || parseInt(eruption.start_day==0) || parseInt(eruption.start_month)==NaN || parseInt(eruption.start_day)==NaN || parseInt(eruption.start_year)==NaN){
+        if (parseInt(eruption.start_year)==NaN || parseInt(eruption.start_year)<before_year || parseInt(eruption.start_month)==0 || parseInt(eruption.start_day==0) || parseInt(eruption.start_month)==NaN || parseInt(eruption.start_day)==NaN || parseInt(eruption.start_year)==NaN){
             return false
         }
         return true
