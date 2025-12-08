@@ -4,40 +4,21 @@ Public Doman
 earthquakes_pd.csv 
 earthquakesa_pd.csv
 
-https://creativecommons.org/publicdomain/zero/1.0/
-https://www.kaggle.com/datasets/smithsonian/volcanic-eruptions
+- Earthquake data: https://www.kaggle.com/datasets/warcoder/earthquake-dataset (Public Domain)
+
   - eruptions.csv
   - volcanos.json
+
+https://creativecommons.org/publicdomain/zero/1.0/
+https://www.kaggle.com/datasets/smithsonian/volcanic-eruptions
+
+Global Volcanism Program, 2025. [Database] Volcanoes of the World (v. 5.3.3; 26 Nov 2025). 
+Distributed by Smithsonian Institution, compiled by Venzke, E. 
+https://doi.org/10.5479/si.GVP.VOTW5-2025.5.3
 
 earthquakesall.csv
 ================================
  - https://data.humdata.org/dataset/catalog-of-earthquakes1970-2014
-
-
-
-Kokeile näitä. Ne eivät ole jaettavissa, mutta antavat hyvät tulokset
-===================================================================== 
-- muunna ensin tekstieditoriassa kentät saman nimimisiksi 
-  (timestamp, latitude, longitude ja description)
-  kuin mukana tulevissa tiedostoissa. 
-- Muuta kenttäerotin ; :ksi 
-- Muunna timestamp tiedostossa oikeaan muotoon 
- esim. search/replace -toiminnalla (kts. oikea muoto mukana tulevista tiedostoista)
-
-italyearthquakes.csv
-================================
-https://creativecommons.org/licenses/by/4.0/
-https://www.kaggle.com/datasets/albertostefani/earthquakes-in-italy-from-1985-to-2022
-
-
- earthquakesall.csv
- ===============================
-https://www.kaggle.com/datasets/grigol1/earthquakes-2000-2023
-
-
-
-
-
 
 
 
