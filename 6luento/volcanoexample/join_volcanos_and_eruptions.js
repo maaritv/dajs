@@ -23,7 +23,7 @@ objectParser.saveTextToFile(JSON.stringify(volcanosAndEruptions), './inputdata/v
 
 function  combineVolcanosAndEruptions(volcanos, eruptions){
     //Jotta vältetään tulivuorilistan monta läpikäyntiä, luodaan map-rakenne, 
-    //josta saadaan muistista purkaukseen liittyvä tulivuori vakioajassa.
+    //josta saadaan muistista purkaukseen liittyvä tulivuori nopeammin.
     const volcanoMap = new Map(
         volcanos.map(volcano => [volcano.volcano_name, volcano])
     );
