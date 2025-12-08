@@ -8,7 +8,7 @@ const eruptions = objectParser.parseCSVtoJSONSync('./inputdata/eruptions.csv', "
 const eruptionsAC = removeEruptionsBeforeYear(eruptions, 1000)
 const transformedEruptions = transformEruptionDateFieldsToStandardDateAndAddDuration(eruptionsAC)
 
-const volcanosAndEruptions = joinVolcanosAndEruptions(volcanos, transformedEruptions).filter(volcano => volcano.volcano_name)
+const volcanosAndEruptions = combineVolcanosAndEruptions(volcanos, transformedEruptions).filter(volcano => volcano.volcano_name)
 
 volcanosAndEruptions.sort((a, b) => a.volcano_name.localeCompare(b.volcano_name));
 console.log(volcanosAndEruptions)
@@ -21,7 +21,7 @@ objectParser.saveTextToFile(JSON.stringify(volcanosAndEruptions), './inputdata/v
  * tulivuorenpurkaukset oikeisiin tulivuoriin käyttäen tulivuoren nimeä. 
  */
 
-function  joinVolcanosAndEruptions(volcanos, eruptions){
+function  combineVolcanosAndEruptions(volcanos, eruptions){
     //Jotta vältetään tulivuorilistan monta läpikäyntiä, luodaan map-rakenne, 
     //josta saadaan muistista purkaukseen liittyvä tulivuori vakioajassa.
     const volcanoMap = new Map(
