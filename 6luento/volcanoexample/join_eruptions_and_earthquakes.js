@@ -10,6 +10,7 @@ console.log("Tulivuori-purkaukset")
 const volcanosAndEruptions = require('./inputdata/volcanos_and_eruptions.json')
 const volcanoEruptionsWithNumericCoordinates = transformCoordinates(volcanosAndEruptions)
 //console.log(volcanoEruptionsWithNumericCoordinates)
+console.log(`${volcanoEruptionsWithNumericCoordinates.length} purkausta.`)
 
 console.log("Maanjäristykset")
 
@@ -21,17 +22,17 @@ const earthquakesPdA = objectParser.parseCSVtoJSONSync('./inputdata/earthquakesa
 //earthquakes.push(...earthquakesItaly)
 earthquakes.push(...earthquakesPd)
 earthquakes.push(...earthquakesPdA)
-
+console.log(`${earthquakes.length} maanjäristystä.`)
 const earthquakesWithNumericCoordinates = transformEarthquakes(earthquakes)
-console.log(earthquakesWithNumericCoordinates)
+//console.log(earthquakesWithNumericCoordinates)
 
 const volcanoEruptionEarthQuakes = joinEarthquakeAndVolcanoEruptions(volcanoEruptionsWithNumericCoordinates, earthquakesWithNumericCoordinates)
 //console.log(volcanoEruptionEarthQuakes)
 
-const cleanedList = volcanoEruptionEarthQuakes.filter(volcanoEruptionEarthQuake=> volcanoEruptionEarthQuake.eq_distanceKm>0)
-console.log(cleanedList.length+" items found")
+const cleanedList = volcanoEruptionEarthQuakes.filter(volcanoEruptionEarthQuake => volcanoEruptionEarthQuake.eq_distanceKm > 0)
+console.log(cleanedList.length + " items found")
 const uniqueList = objectParser.removeDuplicates(cleanedList)
-console.log(uniqueList.length+" unique items found")
+console.log(uniqueList.length + " unique items found")
 
 objectParser.saveTextToFile(JSON.stringify(uniqueList), "outputdata/volcanoEruptionEarthquakes.json")
 
@@ -46,38 +47,48 @@ objectParser.saveTextToFile(JSON.stringify(uniqueList), "outputdata/volcanoErupt
 function joinEarthquakeAndVolcanoEruptions(volcanoEruptions, earthquakes) {
     const volcanoEruptionEarthquakes = earthquakes.map(earthquake => mapRelatedVolcanoEruption(earthquake, volcanoEruptions))
     console.log("Tulivuori-purkaus-maanjäristykset")
-    console.log(volcanoEruptionEarthquakes)
+    //console.log(volcanoEruptionEarthquakes)
     return volcanoEruptionEarthquakes
 }
 
 
-function mapRelatedVolcanoEruption(earthquake, volcanoEruptions) {
+function isEarthquakeRelated(earthquake, volcanoEruption) {
+    const distance = haversine(volcanoEruption.eruption_latitude, 
+        volcanoEruption.eruption_longitude,
+        earthquake.eq_latitude, earthquake.eq_longitude)
 
-    function isEarthquakeRelated(volcanoEruption) {
-        const distance = haversine(volcanoEruption.eruption_latitude, volcanoEruption.eruption_longitude, earthquake.eq_latitude, earthquake.eq_longitude)
-
-        if (distance < 100) {
-            const p = dateUtils.precedes(earthquake.timestamp, volcanoEruption.eruption_date, 30)
-            if (p) {
-                return true;
-            }
-            return false
+    if (distance < 100) {
+        const p = dateUtils.precedes(earthquake.timestamp, volcanoEruption.eruption_date, 30)
+        if (p) {
+            return true;
         }
-        else {
-            return false;
-        }
+        return false
     }
+    else {
+        return false;
+    }
+}
 
-    const relatedVolcanoEruptions = volcanoEruptions.filter(volcanoEruption => isEarthquakeRelated(volcanoEruption))
 
-    if (relatedVolcanoEruptions.length > 0) {
+function mapRelatedVolcanoEruption(earthquake, volcanoEruptions) {
+    const relatedVolcanoEruptions = volcanoEruptions.filter(volcanoEruption => 
+        isEarthquakeRelated(earthquake, volcanoEruption))
+
+    if (relatedVolcanoEruptions.length==1) {
         //console.log("Palautetaan eka")
         const volcanoEruptionEq = { ...relatedVolcanoEruptions[0], ...earthquake }
-        volcanoEruptionEq.eq_distanceKm = haversine(volcanoEruptionEq.eruption_latitude, volcanoEruptionEq.eruption_longitude, volcanoEruptionEq.eq_latitude, volcanoEruptionEq.eq_longitude)
-        volcanoEruptionEq.daysBetweenEqAndEruption=dateUtils.calculateTimeDiffInDays(earthquake.timestamp, relatedVolcanoEruptions[0].eruption_date)
-
+        volcanoEruptionEq.eq_distanceKm = haversine(volcanoEruptionEq.eruption_latitude, 
+            volcanoEruptionEq.eruption_longitude, 
+            volcanoEruptionEq.eq_latitude, volcanoEruptionEq.eq_longitude)
+        volcanoEruptionEq.daysBetweenEqAndEruption = dateUtils.calculateTimeDiffInDays(earthquake.timestamp, 
+            relatedVolcanoEruptions[0].eruption_date)
         //console.log(volcanoEruptionEq)
         return volcanoEruptionEq
+    }
+    else if (relatedVolcanoEruptions.length>1){
+        console.log(`many ${relatedVolcanoEruptions.length} volcanos erupting at the same time nearby??`)
+        console.log(relatedVolcanoEruptions)
+        return {}
     }
     else {
         return {}
