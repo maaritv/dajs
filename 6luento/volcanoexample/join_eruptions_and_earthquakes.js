@@ -88,6 +88,7 @@ function mapRelatedVolcanoEruption(earthquake, volcanoEruptions) {
     else if (relatedVolcanoEruptions.length>1){
         console.log(`many ${relatedVolcanoEruptions.length} volcanos erupting at the same time nearby??`)
         console.log(relatedVolcanoEruptions)
+        console.log(earthquake)
         return {}
     }
     else {
