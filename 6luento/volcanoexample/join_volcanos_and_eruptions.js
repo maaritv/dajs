@@ -37,7 +37,7 @@ function  combineVolcanosAndEruptions(volcanos, eruptions){
  * @param {} eruption 
  * @param {*} volcanos 
  * @returns 
- */
+ */ 
 
 function joinVolcanoAndEruption(eruption, volcanoMap){
     const volcanoForEruption = volcanoMap.get(eruption.volcano_name)
