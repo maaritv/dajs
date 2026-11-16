@@ -10,14 +10,12 @@ const utils = require('./utils')
 //tässä muodostetaan lainaustietuerivit CSV-tiedostoon.
 
 function generateBookLoanAsCSV(loanid) {
-    const bookLoan =  {
-        loanId: loanid,
-        bookId: faker.number.int({min: 0, max: 50}),
-        customerId: faker.number.int({min: 1000, max: 2000}),
-        loanDate: "2024-0"+faker.number.int({min: 1, max: 6})+"-"+faker.number.int({min: 10, max: 28}),
-        returnedDate: "2024-0"+faker.number.int({min: 2, max: 7})+"-"+faker.number.int({min: 10, max: 28}),
-    };
-    return bookLoan.loanId+";"+bookLoan.bookId+";"+bookLoan.customerId+";"+bookLoan.loanDate+";"+bookLoan.returnedDate;
+    const loanId= loanid;
+    const bookId=faker.number.int({min: 0, max: 50});
+    const customerId=faker.number.int({min: 1000, max: 2000});
+    const loanDate=`2024-0"${faker.number.int({min: 1, max: 6})}-${faker.number.int({min: 10, max: 28})}`;
+    const returnedDate=`2024-${faker.number.int({min: 2, max: 7})}-${faker.number.int({min: 10, max: 28})}`;
+    return `${loanId};${bookId};${customerId};${loanDate};${returnedDate}`;
 };
 
 // Nimeä muuttujat/vakiot kuvaavasti, jotta tiedät, missä muodossa data niissä on
