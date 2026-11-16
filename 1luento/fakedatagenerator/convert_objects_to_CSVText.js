@@ -9,3 +9,4 @@ const customerCSVRowList = customers.map(customer=>convertCustomerToCSVText(cust
 const customersCSVText = customerCSVRowList.join("\n")
 
 console.log(customersCSVText)
+

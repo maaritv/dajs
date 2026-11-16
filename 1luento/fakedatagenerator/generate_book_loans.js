@@ -1,6 +1,5 @@
 const { faker } = require('@faker-js/faker');
-const fs = require('node:fs');
-const bookgenerator = require('./generate_books_json')
+const utils = require('./utils')
 
 //asenna: npm install @faker-js/faker
 //Dokumentaatio: https://fakerjs.dev/
@@ -27,7 +26,7 @@ const booksCSVRowList = Array.from({ length: 100 }, (_, index) => generateBookLo
 // Muunna lista CSV-merkkijonoksi käyttäen join-listfunktiota.
 //Rivit yhdistetään merkkijonoksi rivivaihtomerkillä \n
 const booksCSV = booksCSVRowList.join("\n")
-bookgenerator.saveTextToFile(booksCSV, "bookloans.csv")
+utils.saveTextToFile(booksCSV, "bookloans.csv")
 console.log(booksCSV);
 
 

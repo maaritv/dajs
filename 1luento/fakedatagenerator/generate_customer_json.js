@@ -1,5 +1,5 @@
 const { faker } = require('@faker-js/faker');
-const customergenerator = require('./generate_books_json')
+const utils = require('./utils')
 
 //asenna: npm install @faker-js/faker
 //Dokumentaatio: https://fakerjs.dev/
@@ -33,6 +33,6 @@ console.log(customersJSON);
 console.log(typeof(customersJSON));
 
 //Tiedostoon talletetaan TEKSTIÄ
-customergenerator.saveTextToFile(customersJSON, "customers.json")
+utils.saveTextToFile(customersJSON, "customers.json")
 
 

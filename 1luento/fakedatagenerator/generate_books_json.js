@@ -1,5 +1,5 @@
 const { faker } = require('@faker-js/faker');
-const fs = require('node:fs');
+const utils = require("./utils.js")
 
 //asenna: npm install @faker-js/faker
 //Dokumentaatio: https://fakerjs.dev/
@@ -34,19 +34,7 @@ console.log(booksJSON);
 console.log(typeof (booksJSON));
 
 //Tiedostoon talletetaan TEKSTIÄ
-saveTextToFile(booksJSON, "books.json")
+utils.saveTextToFile(booksJSON, "books.json")
 
 
 
-function saveTextToFile(text, fileName) {
-    fs.writeFile(`./${fileName}`, text, err => {
-        if (err) {
-            throw (new Error("Tiedoston kirjoitus epäonnistui."))
-        } 
-    });
-}
-
-//Julkaisemme tallennusfunktion myös toisen 
-//skriptin käyttöön, koska koodia ei saa 
-//kopioida.
-module.exports = { saveTextToFile }
